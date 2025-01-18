@@ -1,0 +1,68 @@
+There is no need for \makeatletter/\makeatother in a class or style file - it's implied by being a style or class file.
+-> cfr resolved this
+
+cfr: that's true for \makeat... but it is only true for \ExplSyntax... in an expl3 class or package.
+and it is only true after you've declared that that is what it is. so the \ExplSyntaxOn is needed, I think, even though the class declares itself to be expl3.
+there was expl3 stuff before that (which wouldn't work without the ExplSyntaxOn)
+-> I removed some constants that where superfluous and now I don't need to use `\ExplSyntaxOn` at the beginning of the class
+
+% don't use \usepackage. use \RequirePackage.
+-> an oversight on my part, corrected
+
+I don't see why you don't use .bool_set:N for the keys. e.g. have female set the bool true and male set the inverse bool true.
+-> cfr resolved this
+
+don't use str functions for things that should be typeset such as \g__unitn_candidate_str should be a tl like \g__unitn_advisor_tl (so for consistency I'd use tl for all of those)
+-> resolved
+
+---
+
+do not encourage users to use a non-flat directory layout.
+-> Why? Having a 'build' folder where you compile things and can manage them without altering the original project files seems like a clean way to organize the project.
+-> because it complicates everything. for experienced users, it can be managed. for beginners, the simpler the better. try this with memoize, for example. or glossaries. moreover, if somebody uses this with a local install, the standard place to keep your bib file is in TEXMFHOME (in which case you also don't want to cite every entry). some users may also use a GUI reference manager (BibDesk, JabRef, Zotero).
+-> if you don't believe me, believe David who said the same thing.
+-> the recommendation should be a flat structure.
+
+your class would be a lot more useful if it did a lot less
+your template would be a lot more useful if it used a simpler (flat) directory structure.
+don't force a directory structure on users, none of this is needed.
+If latex finds this class it will find the logo, and users should be free to specify their bibliography source.
+
+do not do language configuration in the class.
+-> cfr resolved this
+-> no, I didn't. I showed you how to resolve it. as it stands, it won't work. you need to either set up the relevant things with babel or copy the pattern of bool use or delay language-specific stuff etc. --- cfr
+
+
+2024-12-13
+Skillmon:
+you'll just use LaTeX as you're used to, but leave out any \usepackage[T1]{fontenc}
+get to use the fontspec package to load system fonts,
+get better tagging support,
+can use great packages like lua-ul (if you need underlining or striked out text, this is the solution),
+or chickenize (if you want to be silly).
+All that at the cost of a tad slower compilation (but with much more possibilities down the line)
+
+don't use XeLaTeX anymore, stick to pdfLaTeX and LuaLaTeX instead. (XeTeX's LaTeX support is about to end -- or better formulated to be turned into only fixes, no new features). XeTeX has inherent issues in its mechanisms that makes tagging nigh impossible.
+
+if you're using expl3 there are built in methods for that \sys_if_engine_<engine-name>:TF, otherwise the iftex package.
+
+pdfTeX if you need to be fast but no system fonts, LuaTeX otherwise.
+
+David Carlisle
+if they are English math documents pdflatex is still probably first choice (not least because that is required still by arXiv and many journals) if the document needs system fonts or any kind of non latin script, use lualatex
+
+babel is (and always has been) the standard latex interface to language support.
+There was a period around the turn of teh century when babel support was on autopilot and unicode, noticably xetex use was growing, and polyglossia filled a gap that needed filling.
+But now babel is actively maintained, and xelatex is essentially unmaintained so things are different
+
+Example of class written in LaTeX3 notation by Jasper Habicht:
+https://github.com/jasperhabicht/zchinr-cls/blob/main/zchinr.cls
+
+ModDate={\pdfcreationdate},
+
+% Create command for automatically linked e-mail addresses. 
+\NewDocumentCommand { \email } { m } {
+  \href{mailto:#1}{\protect\nolinkurl{#1}}
+}
+
+check page count = {2},% option

@@ -1,0 +1,66 @@
+\chapter{La classe \texttt{unitnthesis}}
+% \chapter[Shorter version]{Title can be longer so a shorter version can be provided}
+% [shorter version] is shown both in the header of pages (odd pages, top right) and in the index.
+
+La classe \texttt{unitnthesis} è stata progettata per consentire allo studente di concentrarsi sul contenuto della tesi, piuttosto che sulla sua forma, in linea con la 
+filosofia di \LaTeX.
+
+\section{Opzioni del documento}
+
+Utilizzando l'opzione \enquote{\texttt{code}} nel documento, verranno automaticamente caricati i pacchetti \package{minted} e \package{algorithm2e}. Il pacchetto \package{minted} consente di evidenziare la sintassi del codice in vari linguaggi di programmazione, mentre \package{algorithm2e} permette di scrivere algoritmi in modo formattato e leggibile.
+
+\section{Pacchetti inclusi in questa classe}
+
+Ecco la lista dei pacchetti con i link ai rispettivi siti di CTAN:
+
+\begin{itemize}
+    \item \package{babel} per il supporto multilingua;
+    \item \package{xcolor} per la gestione dei colori;
+    \item \package{csquotes} per la gestione delle virgolette (stile \texttt{italian=quotes});
+    \item \package{microtype} per la tipografia;
+    \item \package{geometry} per la configurazione dei margini;
+    \item \package{setspace} per la gestione dell'interlinea nel testo;
+    \item \package{parskip} per la gestione dell'interlinea;
+    \item \package{titlesec} per lo stile dei titoli;
+    \item \package{tocbibind} per aggiungere automaticamente la bibliografia e/o l'indice al sommario;
+    \item \package{fancyhdr} per la gestione di intestazioni e piè di pagina;
+    \item \package{enumitem} per l'utilizzo avanzato delle liste (opzione \texttt{inline});
+    \item \package{graphicx} per la gestione delle immagini;
+    \item \package{wrapfig2} per inserire immagini e tabelle a bordo del testo;
+    \item \package{tabularx} per la gestione delle tabelle;
+    \item \package{booktabs} per l'uso di filetti nelle tabelle;
+    \item \package{tabularray} per tabelle avanzate;
+    \item \package{tblr-extras} per tabelle avanzate che vanno su più pagine;
+    \item \package{caption} per le didascalie delle immagini e tabelle;
+    \item \package{subcaption} per le didascalie delle sotto-immagini;
+    \item \package{footmisc} per la tipografia delle note a piè di pagina;
+    \item \package{biblatex} per la gestione della bibliografia (con \texttt{backend=biber});
+    \item \package{hyperref} per la gestione dei link cliccabili;
+    \item \package{cleveref} per l'utilizzo delle etichette intelligenti.
+\end{itemize}
+
+Per coloro che frequentano corsi scientifici che richiedono la scrittura di codice è possibile caricare i pacchetti:
+\begin{itemize}
+    \item \package{algorithm2e} per la scrittura degli algoritmi;
+    \item \package{minted} per l'inserimento di codice.
+\end{itemize}
+
+\section{Struttura delle cartelle}
+
+La cartella \texttt{assets/} contiene diverse sottocartelle, ognuna con una funzione specifica per organizzare i diversi tipi di contenuto nella tesi:
+
+\begin{enumerate}
+    \item \texttt{chapters}: per i file di ciascun capitolo del documento;
+    \item \texttt{appendixes}: per gli eventuali appendici aggiuntivi alla tesi;
+    \item \texttt{images}: per le figure utilizzate nel documento, come fotografie \texttt{.jpg} o illustrazioni \texttt{.png};
+    \item \texttt{resources}: per altre risorse utili, come dati, file di configurazione o materiali di ricerca o il database bigliografico \texttt{.bib} gestito dal pacchetto \package{biblatex};
+    % \item \texttt{algorithms}: per memorizzare file relativi agli algoritmi e codici sorgente.
+    % \item \texttt{codes}: per conservare il codice sorgente o esempi di codice, specialmente se sono inclusi tramite il pacchetto \package{minted};
+    % \item \texttt{diagrams}: per archiviare diagrammi o grafici, come file \texttt{.tex} o \texttt{.pdf} prodotti dal pacchetto \package{tikz};
+    % \item \texttt{tables}: per file relativi a tabelle e dati numerici, come file \texttt{.csv} o \texttt{.tex}.
+\end{enumerate} 
+
+Questa organizzazione aiuta a mantenere il progetto della tesi ben strutturato e facilmente gestibile.
+Sentiti libero di eliminare qualsiasi cartella che non ti risulta utile.
+
+Saranno mostrati diversi esempi per gestire questa struttura.

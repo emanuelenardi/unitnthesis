@@ -1,0 +1,157 @@
+\ExplSyntaxOn
+\sys_if_engine_luatex:TF
+  {
+    \RequirePackage{fontspec}
+    \RequirePackage{lua-ul}
+  }
+  {
+    \RequirePackage[T1]{fontenc}
+  }
+\ExplSyntaxOff
+
+% No style for language 'nil'
+% Come passare a babel la lingua della classe?
+
+\RequirePackage{xcolor}% Gestione dei colori
+
+\RequirePackage[inline]{enumitem}
+
+\RequirePackage{microtype}
+
+% interesting package
+% \RequirePackage{graphicscache}
+
+% \RequirePackage{siunitx}
+% \sisetup{locale = IT}
+
+% \RequirePackage{wrapfig2}% wrap text around a figure
+% \RequirePackage{tabularx}% Tables
+% \RequirePackage{booktabs}% Beautiful tables
+
+% uses a lot of resources on overleaf
+% \RequirePackage{tabularray}% Advanced tables
+% \RequirePackage{tblr-extras}% Advanced tables on more pages
+% \UseTblrLibrary{booktabs, siunitx}% tabularray
+% \UseTblrLibrary{babel, caption}% tblr-extras
+
+% cfr: note that some widely used fonts have specially tuned settings for microtype provided either by the font package or by microtype - are you sure your generic settings are better?
+% 'microtype' - improves line filling
+% activate = {true, nocompatibility} - activate protrusion and expansion
+% final - enable microtype; use 'draft' to disable
+% tracking = true, kerning=true, spacing=true - activate these techniques
+% factor = 1100 - add 10% to the protrusion amount (default is 1000)
+% stretch = 10, shrink = 10 - reduce stretchability/shrinkability (default is 20/20)
+% \microtypesetup{
+%     % activate,% enables protusion and expansion
+%    final,
+%     % tracking = true,% too much space
+%    kerning	 = true,
+%     % spacing	 = true,
+%    factor   = 1100,
+%    stretch	 = 10,
+%    shrink   = 10,
+% }
+% \microtypecontext{spacing=nonfrench}
+
+% ----------------------------------------------------------------------
+%                           headings
+% ----------------------------------------------------------------------
+% \RequirePackage{fancyhdr}
+
+% \pagestyle{fancy} % Enable the custom headers and footers
+% \fancyhead[LE]{\slshape \nouppercase\rightmark}% Header for left even pages
+% \fancyhead[RE,LO]{}% Header for right even pages and left odd pages
+% \fancyhead[RO]{\slshape \nouppercase\leftmark}% Header for right odd pages: Capitolo corrente
+% % Package fancyhdr Warning: \headheight is too small (12.0pt)
+% % https://tex.stackexchange.com/questions/327285/
+% \setlength{\headheight}{15pt}
+
+% \RequirePackage{caption, subcaption}
+
+% \captionsetup{
+% 	figureposition = bottom,
+% 	tableposition  = top,
+% 	font           = small,
+% 	labelfont      = {sf, bf},
+% 	justification  = centering
+% }
+
+% \captionsetup[table]{
+% 	format         = hang,
+% 	% justification  = raggedright,
+% 	singlelinecheck= off
+% }
+
+% \captionsetup[figure]{
+% 	format         = hang,
+% 	% justification  = raggedright,
+% 	singlelinecheck= off
+% }
+
+% \captionsetup[subfigure]{
+% 	format         = hang,
+% 	justification  = raggedright,
+% 	singlelinecheck= off
+% }
+
+% Computer Science alike students
+% \RequirePackage{algorithm2e}
+% inserimento di codice, (caricalo prima di csquotes)
+% \RequirePackage{minted}
+% \usemintedstyle{manni}
+% \setminted{
+%     autogobble,% removes all common leading whitespace from code 
+%     breaklines = true,
+%     breakanywhere,
+%     breakaftersymbolpre = \raisebox{0ex}[0ex][0ex]{\ensuremath{\rhookswarrow}},
+%     breakaftersymbolpost = \raisebox{0ex}[0ex][0ex]{\ensuremath{\rcurvearrowse}\space},
+%     fontsize = \small,
+%     % fontseries = bold,% Font shape `T1/cmr/bold/n' `T1/cmtt/bold/it' `T1/cmr/bold/it' undefined
+%     mathescape,
+%     numberblanklines = false,
+%     texcomments,
+%     tabsize = 4,
+% }
+% \RequirePackage{csquotes}
+% % \RequirePackage[italian=quotes]{csquotes}% Gestione virgolette
+
+% \RequirePackage{amssymb}
+% \RequirePackage{amsfonts}
+% \RequirePackage{mathtools}
+% \RequirePackage{witharrows}
+
+% % giurisprudenza lo userà molto
+% \RequirePackage{marginnote}
+
+% \RequirePackage[subpreambles=false, mode=buildnew]{standalone}
+
+% NOTE every department should be able to change the style dinamically
+% \RequirePackage[
+%     backend=biber, % Use the biber engine for compiling the bibliography
+%     % bibstyle=numeric, % Main bibliography style
+%     % citestyle=numeric, % In-text citation style
+%     % sorting=nyt, % Sort references in the bibliography by name, then year, then title
+%     % sortcites=true, % If multiple citekeys are passed to a citation command, sort them in the citation
+%     % abbreviate=false, % Suppress abbreviations such as "Ed." for Editor
+%     % backref=true, % List the page where references were cited in the bibliography
+%     % defernumbers=true,
+% ]{biblatex}
+
+% % relative path to the bibliography file
+% \addbibresource{assets/resources/references.bib}
+
+% ----------------------------------------------------------------------
+% Comandi e pacchetti utilizzati per la presentazione del template
+% cancellali una volta che hai letto gli esempi
+% just for demonstration – not needed for the layout
+% cfr: so it should be in a .tex demo file and not here ;)
+% ----------------------------------------------------------------------
+\RequirePackage{kantlipsum}
+\NewDocumentCommand{\package}{ m }{%
+   \href{https://ctan.org/pkg/#1}{%
+       \textsf{#1}%
+   }%
+}%
+% ----------------------------------------------------------------------
+% cfr: don't recommend this
+% \RequirePackage[noabbrev, nameinlink]{cleveref}

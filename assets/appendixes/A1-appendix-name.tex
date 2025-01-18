@@ -1,0 +1,203 @@
+\chapter{Qualche esempio}
+
+\section{Come scrivere il testo.}
+
+Vai a capo dopo ogni punto.
+E qui scrivi la frase successiva.
+
+Vai a capo due volte se vuoi iniziare un nuovo paragrafo.
+
+Try to \emph{empathise words} or make them \textbf{bold}.
+
+\section{Example lists}
+
+Non numerated lists:
+\begin{itemize}
+  \item list entries start with the \texttt{item} command;
+  \item individual entries are indicated with a black dot, a so-called bullet;
+  \item the text in the entries may be of any length.
+\end{itemize}
+
+Numerated list:
+\begin{enumerate}
+  \item items are numbered automatically;
+  \item the numbers start at 1 with each use of the \texttt{enumerate} environment;
+  \item another entry in the list.
+\end{enumerate}
+
+Una lista nel testo:
+\begin{itemize*}
+    \item una lista in linea;
+    \item un altro elemento;
+    \item un altro ancora.
+\end{itemize*}
+
+Una lista con lettere maiuscole:
+\begin{enumerate*}[label=\Alph*)]
+    \item una lista in linea;
+    \item un altro elemento;
+    \item un altro ancora.
+\end{enumerate*}
+
+Una lista con lettere minuscole:
+\begin{enumerate*}[label=\alph*.]
+    \item una lista in linea;
+    \item un altro elemento;
+    \item un altro ancora.
+\end{enumerate*}
+
+\section{Example figure and table}
+
+Una semplice tabella inserita nel testo.
+Il testo, a meno che non si tratti di intestazioni, dovrebbe essere sempre allineato a sinistra.
+Evita di utilizzare le linee verticali ed utilizza solo quelle orizzontali.
+
+% @{} c c @{} indica come sono strutturate le colonne
+% @{}: rimuove gli spazi sul bordo della tabella
+% l (elle): indica la presenza di una colonna nel testo il cui testo è centrato
+% puoi allineare il testo al centro con la colonna 'c', o a destra con la colonna 'r'
+\begin{tabular}{@{} l l @{}}
+\toprule
+    intestazione & intestazione \\
+\midrule
+    corpo & corpo \\
+\bottomrule
+\end{tabular}
+
+% Posizione nello specificatore float facoltativo
+% h: here (qui)
+% t: top (all'inizio della pagina)
+% b: bottom (alla fine della pagina)
+% p: page (una pagina dedicata a questa tabella)
+\begin{table}[h]
+    \centering
+    % inserisci la didascalia *sopra* la tabella e non lasciare uno spazio fra 'caption' e 'label'
+    \caption{Caption}\label{tab:my_label}
+    \begin{tabular}{@{} *{2}{l} @{}}
+    \toprule
+        intestazione & intestazione \\
+    \midrule
+        corpo & corpo \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Example figure and table with the tabularray package}
+
+Attenzione il pacchetto \package{tabularray} seppur molto consuma prende molto tempo di compilazione, è sconsigliato utilizzarlo su Overleaf.
+Per questo motivo è presente il codice \verb|\IfPackageLoadedTF{tabularray}| il quale controlla se il paccheto è stato caricato e in caso affermativo esegue il codice, altrimento stampa semplicemente un avvertimento.
+
+\IfPackageLoadedTF{tabularray}{
+La tabella~\ref{tab:tabella-con-tabularray}
+
+\begin{table}[h!tbp]% here top bottom page
+    \centering% allineata al centro
+    \caption{Caption}% <- importante, non rimuovere questo '%'
+    \label{tab:tabella-con-tabularray}% tab convenzione per 'table'
+    \begin{tblr}{
+    % opzioni della tabella
+        % colspec={ *{3}{Q[c,m]} },% 3 colonne, il cui contenuto è centrato orizzontalmente e verticalmente
+        row{1}={font=\bfseries},
+        hline{1,Z} = {2pt},% prima ed ultima riga
+        hline{2} = {1pt},
+        hline{3-Y} = {.1pt, lightgray},% Y penultima riga
+    }
+    % contenuto della tabella
+    Alpha & Beta & Gamma & Delta \\
+    Epsilon & Zeta & Eta & Theta \\
+    Iota & Kappa & Lambda & Mu \\
+    Nu & Xi & Omicron & Pi \\
+    Rho & Sigma & Tau & Upsilon \\
+    Phi & Chi & Psi & Omega \\
+    \end{tblr}
+\end{table}
+
+\begin{tblr}{
+    colspec={ Q[l] Q[c] Q[r] },% allineamento colonne: (l)eft, (c)enter, (r)ight
+    rowspec={ Q[t] Q[m] Q[b] },% allineamento right: (t)op, (m)iddle, (b)ottom
+    hlines, vlines,% for debug purposes only
+}
+    {Alpha \\ Alpha} & Beta & Gamma \\% puoi spezzare il contenuto di una cella usando le '{}'
+     Delta & Epsilon & {Zeta \\ Zeta} \\
+     Eta & {Theta \\ Theta} & Iota \\
+\end{tblr}
+
+Esempio di tabella che prende tutta la pagina:
+
+\begin{tblr}{
+    colspec={@{} XXX @{}},
+    hline{1,Z},% prima ed ultima riga
+    vlines,% for debug purposes only
+}
+    Alpha & Beta & Delta\\
+    Gamma & Delta & Epsilon\\
+    Zeta & Eta & Theta\\
+\end{tblr}
+
+\begin{tblr}{
+    hlines = {1pt,white},
+    row{odd} = {blue7},
+    row{even} = {azure7},
+    column{1} = {purple7,c},
+}
+    Alpha & Beta & Gamma & Delta \\
+    Epsilon & Zeta & Eta & Theta \\
+    Iota & Kappa & Lambda & Mu \\
+    Nu & Xi & Omicron & Pi \\
+    Rho & Sigma & Tau & Upsilon \\
+    Phi & Chi & Psi & Omega \\
+\end{tblr}
+
+\begin{tblr}{
+    row{odd} = {bg=lightgray},
+    % l'ordine dei comandi è importante
+    row{1} = {bg=darkgray, fg=white, font=\sffamily},
+}
+    Alpha & Beta & Gamma \\
+    Delta & Epsilon & Zeta \\
+    Eta & Theta & Iota \\
+    Kappa & Lambda & Mu \\
+    Nu Xi Omicron & Pi Rho Sigma & Tau Upsilon Phi \\
+\end{tblr}
+
+\(\begin{tblr}{
+    column{1} = {mode=text},
+    column{3} = {mode=dmath},% display math
+}
+    Alpha   & \frac{1}{2} & \frac{1}{2} \\
+    Epsilon & \frac{3}{4} & \frac{3}{4} \\
+    Iota    & \frac{5}{6} & \frac{5}{6} \\
+\end{tblr}\)
+}{Il pacchetto \texttt{tabularray} non è stato caricato.}
+
+\section{Wrap text of tables in text}
+
+\IfPackageLoadedTF{wrapfig2}{
+\begin{wrapfigure}{r}{50mm}
+\centering\unitlength=1mm
+\begin{picture}(40,30)
+\polyline(0,0)(0,30)(40,0)(0,0)(40,30)(0,30)
+\Line(40,0)(40,30)
+\end{picture}
+\caption{A rectangle with its diagonals}\label{fig:figure}
+\end{wrapfigure}
+{\itshape \kant[1]}
+}{Il pacchetto \texttt{wrapfig2} non è stato caricato.}
+
+For more example take a look at the package documentation of \package{wrapfig2}.
+
+\section{Inserimento del codice}
+
+Attenzione il pacchetto \package{minted} seppur molto consuma prende molto tempo di compilazione, è sconsigliato utilizzarlo su Overleaf.
+Per questo motivo è presente il codice \verb|\IfPackageLoadedTF{minted}| il quale controlla se il paccheto è stato caricato e in caso affermativo esegue il codice, altrimento stampa semplicemente un avvertimento.
+
+% \IfPackageLoadedTF{minted}{
+% Inserimento di uno spezzone breve di codice direttamente nel testo:
+% \begin{minted}{java}
+% public class Hello {
+%    public static void main(String[] args) {
+%       System.out.println("Hello, World!");
+%    }
+% }
+% \end{minted}
+% }{Il pacchetto \texttt{minted} non è stato caricato.}

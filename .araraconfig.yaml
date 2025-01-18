@@ -1,0 +1,46 @@
+!config
+language: it
+verbose: false
+logging: false
+defaultPreamble: build
+preambles:
+  build: |
+    % arara: mkdir: { target: 'build' }
+    % arara: lualatex: { draft: yes, shell: yes, options: [ '--output-directory=build' ] }
+    % arara: lualatex: { shell: yes, synctex: yes, options: [ '--output-directory=build' ] }
+  wordcount: |
+    % arara: texcount: { output: texcount.txt }
+  clean: |
+    %! arara: latexmk: { clean: all }
+    % arara: rmdir: { target: 'build' }
+    % arara: clean: { files: [arara.log, texcount.txt] }
+  backup: |
+    % arara: mkdir: { target: 'backup' }
+    % arara: copy: { files: [ 'build/thesis.pdf' ], target: 'backup/thesis-2024-05-20.pdf' }
+  build-bibliography: |
+    % arara: lualatex: { draft: yes, shell: yes, options: [--output-directory=build] }
+
+    % arara: biber: { options: [ '--output-directory=build' ] }
+    % arara: --> if missing(toFile('build/thesis.bbl')) || changed(toFile('build/thesis.bbl')) || found(toFile('build/thesis.log'), 'Citation')
+
+    % arara: lualatex: { shell: yes, synctex: yes, options: [ '--output-directory=build' ] }
+  build-glossary: |
+    % arara: lualatex: { draft: yes, shell: yes, options: [ '--output-directory=build' ] }
+
+    % arara: makeglossaries: { options: [ '-d', 'build' ] }
+    % arara: --> if changed (toFile('build/thesis.glo')) || missing (toFile('build/thesis.gls'))
+
+    % arara: lualatex: { shell: yes, synctex: yes, options: [ '--output-directory=build' ] }
+  build-thesis: |
+    % arara: lualatex: { shell: yes, draft: yes, options: [ '--output-directory=build' ] }
+
+    % arara: biber: { options: [ '--output-directory=build' ] }
+    % arara: --> if missing(toFile('build/thesis.bbl')) || changed(toFile('build/thesis.bbl')) || found(toFile('build/thesis.log'), 'Citation')
+
+    % arara: makeglossaries: { options: [ '-d', 'build' ] }
+    % arara: --> if changed (toFile('build/thesis.glo')) || missing (toFile('build/thesis.gls'))
+
+    % arara: lualatex: { shell: yes, synctex: yes, options: [ '--output-directory=build' ] }
+
+    % arara: move: { files: [ 'build/thesis.pdf' ],
+    % arara: --> target: 'backup/thesis.pdf' }

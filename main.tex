@@ -1,0 +1,110 @@
+% !TeX TS-program = lualatex
+% !TeX root = main.tex
+\DocumentMetadata{
+    pdfversion=2.0,
+    lang=it-IT,% default value: en-US
+    % testphase={phase-III, table}% experimental, not working
+}
+\documentclass[
+  % lingua del frontespizio
+  language = english,% default: italian, accepted values: italian/english
+  % debug,
+  11pt
+]{unitnthesis}
+
+% todo: translates default strings if english is set
+
+\unitnset{
+    % valori accettati: c3a/cibio/cimec/cismed/dem/df/dfg/dicam/dii/dipsco/disi/dlf/dm/dsrs/sis
+    department = disi,% default: disi, case insensitive field
+    % valori accettati: bachelor/master/doctorate
+    degree = bachelor,% default: bachelor, case insensitive field
+    course = Informatica,
+    title = Come scrivere la tesi in \LaTeX,
+    subtitle = Il mio sottotitolo,
+    keywords = { stem, algorithms, graphs },% use curly braces to delimit keywords
+    % candidate/label = Candidata,
+    candidate = Emanuele Nardi,
+    candidate/ID = 000000,
+    advisor/label = Relatrice,
+    advisor = Prof.\ Alberto Montresor,% '\ ' to make a shorter space character
+    coadvisors/label = Correlatori,
+    coadvisors = { Prof.\ Paola Quaglia,Prof.\ Fausto Giunchiglia, Prof.\ Marco Patrigniani },% attenzione non mettere spazi
+    year = 2024/2025,
+    dedication = {A tutti gli studenti dell'UniTN\\per i loro primi passi in \LaTeX},
+    chapther style = compact,
+    page limit = 15,% should I consider the bibliograhy in the count?
+}
+
+% todos
+% ask opinion on tex chat (?)
+
+% \unitnset{
+    % numero di loghi e posizione
+    % logo ~ path / first  = assets/images/logo/eit-digital-logo.png,
+    % logo ~ path / second = assets/images/logo/marchio-unitrento-colore-it.png,
+    % logo ~ path / third  = assets/images/logo/stockholm-university-logo.png,
+% }
+
+% alternative
+% \pathlogoset{
+    % eit       = assets/images/logo/eit-digital-logo.png,
+    % unitn     = assets/images/logo/marchio-unitrento-colore-it.png,
+    % stockholm = assets/images/logo/stockholm-university-logo.png,
+    % logo order = { eit, unitn, stockholm },
+% }
+
+% interface3 useful functions
+% \file_if_exist:nTF
+% \file_if_exist_input:nF
+
+% seleziona la lingua principale del documento main=...
+\usepackage[main=italian, english]{babel}
+% vengono importati altri pacchetti che potrebbero essere utili
+% consulta: </unitnthesis/pacchetti link>
+\usepackage{addiotional-packages}
+
+\begin{document}
+\frontmatter
+
+    \maketitle
+        
+    % \begin{acknowledgements}
+    %     Here you can write your acknowledgments.
+        
+    %     \kant
+    % \end{acknowledgements}
+
+    % \tableofcontents
+    % \listoffigures% (optional)
+    % \listoftables% (optional)
+    % \cleardoublepage
+
+% \mainmatter
+
+    % \begin{abstract}
+    %     The \texttt{unitnthesis} class produces a template for the Bachelor, Master and Doctoral thesis manuscripts for students at UniTN.
+    %     The class allows to write your manuscript using either italian or english; so, if you are an international student, feel free to use it!
+    % \end{abstract}
+
+    % \input{assets/chapters/01-introduction}
+    % \input{assets/chapters/02-development}
+    % \input{assets/chapters/03-development}
+    % \input{assets/chapters/04-development}
+    % \input{assets/chapters/05-conclusions}
+
+    % \begin{appendices}
+    %     \input{assets/appendixes/A1-appendix-name}
+    %     \input{assets/appendixes/A2-appendix-name}
+    % \end{appendices}
+
+% \backmatter
+
+    % Print the entire bibliography regardless of whether they have been cited in the text
+    % \nocite{*}
+
+    % Add contents to ToC
+    % \addcontentsline{toc}{chapter}{Bibliography}% not needed anymore, to check
+    
+    % \printbibliography
+\end{document}
